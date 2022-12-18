@@ -1,7 +1,9 @@
 {
   "name": "nested-modal",
   "version": "0.1.0",
+  "author": "Arbnor Lumezi",
   "private": true,
+  "main": "src/index.ts",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -13,6 +15,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-transition-group": "^4.4.5",
+    "styled-components": "^5.3.6",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
   },
@@ -35,9 +39,13 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ]
+  },
+  "devDependencies": {
+    "@types/react-transition-group": "^4.4.5",
+    "@types/styled-components": "^5.1.26"
   }
 }
