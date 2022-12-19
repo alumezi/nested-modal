@@ -137,33 +137,31 @@ const NestedModal = ({
         {children.map((item, index) => {
           const nodeRef: any = createRef<HTMLDivElement>();
           return (
-            <>
-              <Transition
-                nodeRef={nodeRef}
-                in={show.get(item.props.id) || false}
-                appear={show.get(item.props.id) || false}
-                key={item.props.id}
-                timeout={500}
-              >
-                {(state) => (
-                  <NestedChild
-                    nodeRef={nodeRef}
-                    index={index}
-                    indexBasedLeft={indexBasedLeft(index)}
-                    title={item.props.title}
-                    show={show.get(item.props.id) || false}
-                    handleClose={handleClose}
-                    handleModalClose={handleModalClose}
-                    style={{
-                      ...defaultStyle(index),
-                      ...transitionStyles(index)[state],
-                    }}
-                  >
-                    {item}
-                  </NestedChild>
-                )}
-              </Transition>
-            </>
+            <Transition
+              nodeRef={nodeRef}
+              in={show.get(item.props.id) || false}
+              appear={show.get(item.props.id) || false}
+              key={item.props.id}
+              timeout={500}
+            >
+              {(state) => (
+                <NestedChild
+                  nodeRef={nodeRef}
+                  index={index}
+                  indexBasedLeft={indexBasedLeft(index)}
+                  title={item.props.title}
+                  show={show.get(item.props.id) || false}
+                  handleClose={handleClose}
+                  handleModalClose={handleModalClose}
+                  style={{
+                    ...defaultStyle(index),
+                    ...transitionStyles(index)[state],
+                  }}
+                >
+                  {item}
+                </NestedChild>
+              )}
+            </Transition>
           );
         })}
       </TransitionGroup>
