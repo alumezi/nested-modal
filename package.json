@@ -1,6 +1,6 @@
 {
   "name": "nested-modal",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Arbnor Lumezi",
   "main": "src/index.tsx",
   "dependencies": {
