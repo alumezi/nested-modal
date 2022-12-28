@@ -1,18 +1,15 @@
-import { createRef, ReactElement, useEffect, useState } from "react";
-import styled from "styled-components";
-import NestedChild from "./NestedChild";
-import {
-  TransitionGroup,
-  Transition,
-  TransitionStatus,
-} from "react-transition-group";
+import React from 'react'
+import { createRef, ReactElement, useEffect, useState } from 'react'
+import styled from 'styled-components'
+import NestedChild from './NestedChild'
+import { TransitionGroup, Transition, TransitionStatus } from 'react-transition-group'
 
 type Props = {
-  children?: ReactElement | ReactElement[];
-  currentOpenedModal: string;
-  setCurrentOpenedModal: (a: string) => void;
-  onClose: () => void;
-};
+  children?: ReactElement | ReactElement[]
+  currentOpenedModal: string
+  setCurrentOpenedModal: (a: string) => void
+  onClose: () => void
+}
 
 const NestedBase = styled.div`
   position: absolute;
@@ -20,84 +17,74 @@ const NestedBase = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-`;
+`
 
-const NestedModal = ({
-  children,
-  currentOpenedModal,
-  setCurrentOpenedModal,
-  onClose,
-}: Props): any => {
-  const [show, setShow] = useState<Map<string, boolean>>(new Map());
-  const indexBasedLeft = (index: number) => index * 5;
+const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onClose }: Props): any => {
+  const [show, setShow] = useState<Map<string, boolean>>(new Map())
+  const indexBasedLeft = (index: number) => index * 5
 
   useEffect(() => {
     const newMap = () => {
-      let a = new Map();
-      let addedShow = true;
+      const a = new Map()
+      let addedShow = true
       if (Array.isArray(children)) {
         children?.forEach((item) => {
-          a.set(item.props.id, addedShow);
+          a.set(item.props.id, addedShow)
           if (item.props.id === currentOpenedModal) {
-            addedShow = false;
+            addedShow = false
           }
-        });
+        })
       } else {
-        a.set(children?.props.id, true);
+        a.set(children?.props.id, true)
       }
-      return a;
-    };
+      return a
+    }
 
-    setShow(newMap());
-  }, [children, currentOpenedModal]);
+    setShow(newMap())
+  }, [children, currentOpenedModal])
 
   if (!currentOpenedModal) {
-    return null;
+    return null
   }
 
   if (!children) {
-    return null;
+    return null
   }
 
   const handleClose = (index: number) => {
     if (Array.isArray(children)) {
       if (index === 0) {
-        setCurrentOpenedModal("");
-        onClose();
-        children[0].props?.onClose && children[0].props.onClose();
+        setCurrentOpenedModal('')
+        onClose()
+        children[0].props?.onClose && children[0].props.onClose()
       }
 
-      setCurrentOpenedModal(children[index - 1]?.props.id);
-      children[index]?.props?.onClose && children[index]?.props?.onClose();
+      setCurrentOpenedModal(children[index - 1]?.props.id)
+      children[index]?.props?.onClose && children[index]?.props?.onClose()
     }
-  };
+  }
 
   const handleBaseClick = (event: any) => {
-    if (event.target.id === "nested_base") {
-      handleClose(0);
+    if (event.target.id === 'nested_base') {
+      handleClose(0)
     }
-  };
+  }
 
   const handleModalClose = (event: any, index: number) => {
     if (Array.isArray(children)) {
-      if (
-        event.target?.id === "back_button" ||
-        event.target?.parentElement.id === "back_button"
-      ) {
-        handleClose(index);
+      if (event.target?.id === 'back_button' || event.target?.parentElement.id === 'back_button') {
+        handleClose(index)
 
-        return;
+        return
       }
 
-      const currentOpenedChild = children.findIndex(
-        (item) => item.props.id === currentOpenedModal
-      );
+      const currentOpenedChild = children.findIndex((item) => item.props.id === currentOpenedModal)
       if (currentOpenedChild !== index) {
-        handleClose(index + 1);
-        return;
+        handleClose(index + 1)
+        return
       }
     }
-  };
+  }
 
   if (!Array.isArray(children)) {
     return (
@@ -113,15 +100,14 @@ const NestedModal = ({
       >
         {children}
       </NestedChild>
-    );
+    )
   }
 
   const defaultStyle = (index: number) => ({
-    transition:
-      "opacity 100ms ease-in-out 0s, left 200ms ease-in-out 0s, margin-left 200ms ease-in-out 0s",
+    transition: 'opacity 100ms ease-in-out 0s, left 200ms ease-in-out 0s, margin-left 200ms ease-in-out 0s',
     left: `${indexBasedLeft(index) + 4}%`,
     opacity: 0,
-  });
+  })
 
   const transitionStyles = (index: number): Record<TransitionStatus, any> => ({
     entering: { left: `${indexBasedLeft(index) + 4}%`, opacity: 1 },
@@ -129,13 +115,13 @@ const NestedModal = ({
     exiting: { opacity: 0 },
     exited: { opacity: 0 },
     unmounted: { opacity: 0 },
-  });
+  })
 
   return (
-    <NestedBase onClick={handleBaseClick} id="nested_base">
+    <NestedBase onClick={handleBaseClick} id='nested_base'>
       <TransitionGroup>
         {children.map((item, index) => {
-          const nodeRef: any = createRef<HTMLDivElement>();
+          const nodeRef: any = createRef<HTMLDivElement>()
           return (
             <Transition
               nodeRef={nodeRef}
@@ -162,11 +148,11 @@ const NestedModal = ({
                 </NestedChild>
               )}
             </Transition>
-          );
+          )
         })}
       </TransitionGroup>
     </NestedBase>
-  );
-};
+  )
+}
 
-export default NestedModal;
+export default NestedModal

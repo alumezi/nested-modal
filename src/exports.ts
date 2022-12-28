@@ -1,3 +1,3 @@
-import NestedModal from "./App";
+import NestedModal from './App'
 
-export { NestedModal };
+export { NestedModal }

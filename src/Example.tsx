@@ -1,31 +1,27 @@
-import React, { useState } from "react";
-import NestedModal from "./App";
+import React, { useState } from 'react'
+import NestedModal from './App'
 
 const Example = () => {
-  const [currentOpenedModal, setCurrentOpenedModal] = useState("first-modal");
+  const [currentOpenedModal, setCurrentOpenedModal] = useState('first-modal')
 
   return (
     <NestedModal
       currentOpenedModal={currentOpenedModal}
       setCurrentOpenedModal={setCurrentOpenedModal}
-      onClose={() => {}}
+      onClose={() => {
+        return null
+      }}
     >
-      <div id="first-modal">
+      <div id='first-modal'>
         First modal content
-        <button onClick={() => setCurrentOpenedModal("second-modal")}>
-          {" "}
-          Open Second Modal
-        </button>
+        <button onClick={() => setCurrentOpenedModal('second-modal')}> Open Second Modal</button>
       </div>
-      <div id="second-modal">
-        <button onClick={() => setCurrentOpenedModal("third-modal")}>
-          {" "}
-          Open Second Modal
-        </button>
+      <div id='second-modal'>
+        <button onClick={() => setCurrentOpenedModal('third-modal')}> Open Second Modal</button>
       </div>
-      <div id="third-modal"></div>
+      <div id='third-modal'></div>
     </NestedModal>
-  );
-};
+  )
+}
 
-export default Example;
+export default Example

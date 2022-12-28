@@ -1,5 +1,5 @@
-import { ReactElement, MouseEvent } from "react";
-import styled from "styled-components";
+import React, { ReactElement, MouseEvent } from 'react'
+import styled from 'styled-components'
 
 const ModalHeader = styled.div`
   display: flex;
@@ -12,13 +12,13 @@ const ModalHeader = styled.div`
   background-color: rgb(247, 249, 250);
   z-index: 10;
   box-sizing: border-box;
-`;
+`
 
 const ModalBody = styled.div`
   padding: 5rem;
   overflow-y: auto;
   height: 90%;
-`;
+`
 
 const StyledModal = styled.div<NestedStyledProps>`
   position: fixed;
@@ -35,22 +35,22 @@ const StyledModal = styled.div<NestedStyledProps>`
   &:hover:not(:only-child):not(:last-child) {
     margin-left: 3%;
   }
-`;
+`
 
 interface NestedChilProps {
-  index: number;
-  children?: ReactElement;
-  show: boolean;
-  handleClose: (index: number, callBack?: () => void) => void;
-  handleModalClose: (event: MouseEvent<HTMLDivElement>, index: number) => void;
-  nodeRef: any;
-  style: any;
-  indexBasedLeft: number;
-  title: string;
+  index: number
+  children?: ReactElement
+  show: boolean
+  handleClose: (index: number, callBack?: () => void) => void
+  handleModalClose: (event: MouseEvent<HTMLDivElement>, index: number) => void
+  nodeRef: any
+  style: any
+  indexBasedLeft: number
+  title: string
 }
 
 interface NestedStyledProps {
-  indexBasedLeft: number;
+  indexBasedLeft: number
 }
 
 const NestedChild = ({
@@ -65,33 +65,33 @@ const NestedChild = ({
   title,
 }: NestedChilProps) => {
   if (!show) {
-    return null;
+    return null
   }
 
   return (
     <StyledModal
       indexBasedLeft={indexBasedLeft}
       onClick={(event) => {
-        handleModalClose(event, index);
+        handleModalClose(event, index)
       }}
-      id="nested_modal"
+      id='nested_modal'
       ref={nodeRef}
       style={style}
     >
       <ModalHeader>
         <button
           onClick={() => {
-            handleClose(index);
+            handleClose(index)
           }}
-          id="back_button"
+          id='back_button'
         >
-          {"<"}
+          {'<'}
         </button>
         {title}
       </ModalHeader>
       <ModalBody>{children}</ModalBody>
     </StyledModal>
-  );
-};
+  )
+}
 
-export default NestedChild;
+export default NestedChild
