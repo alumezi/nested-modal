@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRef, ReactElement, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import NestedChild from './NestedChild'
+import { NestedChild } from './NestedChild'
 import { TransitionGroup, Transition, TransitionStatus } from 'react-transition-group'
 
 type Props = {
@@ -22,7 +22,7 @@ const NestedBase = styled.div`
 const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onClose }: Props): any => {
   const [show, setShow] = useState<Map<string, boolean>>(new Map())
   const indexBasedLeft = (index: number) => index * 5
-
+  console.log('as222d')
   useEffect(() => {
     const newMap = () => {
       const a = new Map()

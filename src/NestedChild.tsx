@@ -53,7 +53,7 @@ interface NestedStyledProps {
   indexBasedLeft: number
 }
 
-const NestedChild = ({
+export const NestedChild = ({
   children,
   index,
   show,
@@ -93,5 +93,3 @@ const NestedChild = ({
     </StyledModal>
   )
 }
-
-export default NestedChild
