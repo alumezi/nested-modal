@@ -22,7 +22,7 @@ const NestedBase = styled.div`
 const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onClose }: Props): any => {
   const [show, setShow] = useState<Map<string, boolean>>(new Map())
   const indexBasedLeft = (index: number) => index * 5
-  console.log('as222d')
+
   useEffect(() => {
     const newMap = () => {
       const a = new Map()
