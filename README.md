@@ -24,13 +24,21 @@ Main example:
 ```jsx
 import NestedModal from 'nested-modal'
 
-<NestedModal currentOpenedModal={currentOpenedModal} setCurrentOpenedModal={setCurrentOpenedModal} onClose={() => {}}>
-  <div id='first-modal'>
-    Modal content
-    <button onClick={() => setCurrentOpenedModal('second-modal')}>asd</button>
-  </div>
-  <div id='second-modal'>Modal content 2</div>
-</NestedModal>
+const App = () => {
+  return (
+    <NestedModal
+      currentOpenedModal={currentOpenedModal}
+      setCurrentOpenedModal={setCurrentOpenedModal}
+      onClose={() => {}}
+    >
+      <div id='first-modal'>
+        Modal content
+        <button onClick={() => setCurrentOpenedModal('second-modal')}>asd</button>
+      </div>
+      <div id='second-modal'>Modal content 2</div>
+    </NestedModal>
+  )
+}
 ```
 
 ## Contributing
