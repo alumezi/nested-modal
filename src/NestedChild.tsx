@@ -1,4 +1,5 @@
 import React, { ReactElement, MouseEvent } from 'react'
+import { BackIcon } from './BackIcon'
 
 interface NestedChildProps {
   index: number
@@ -39,12 +40,13 @@ export const NestedChild = ({
     >
       <div className='modal-header'>
         <button
+          className='back-button'
           onClick={() => {
             handleClose(index)
           }}
           id='back_button'
         >
-          {'<'}
+          <BackIcon />
         </button>
         {title}
       </div>
