@@ -1,46 +1,59 @@
-# We are still working on the readme and instructions 🙏 ❤️
+# [nested-modal (React)](https://reactjs.org/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/alumezi/nested-modal/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Nested Modal is a component that helps manage lots of modals shown at the same time.
 
-## Available Scripts
+- **Easy to use:** Very easy to create all the modals you need by just wrapping the content nodes with the Nested Modal wrapper.
+- **Full Control:** Abstracts only the main parts, you can fully control visiblity with ids and callbacks.
 
-In the project directory, you can run:
+[Learn how to use React in your project](https://reactjs.org/docs/getting-started.html).
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`npm install nested-modal`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Documentation
 
-### `npm test`
+We are still working on some proper docs.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Examples
 
-### `npm run build`
+Main example:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Use a useState hook to control Visibility.
+- Each node added will be a modal.
+- Ids have to be unique.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```jsx
+import NestedModal from 'nested-modal'
+;<NestedModal currentOpenedModal={currentOpenedModal} setCurrentOpenedModal={setCurrentOpenedModal} onClose={() => {}}>
+  <div id='first-modal'>
+    Modal content
+    <button onClick={() => setCurrentOpenedModal('second-modal')}>asd</button>
+  </div>
+  <div id='second-modal'>Modal content 2</div>
+</NestedModal>
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
 
-### `npm run eject`
+I made this package just for fun. Anyone who would like to contribute is welcomed to open PR's or post suggestions/issues.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Development
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In order to work on this package you need to follow these steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Create a react project. e.g. with [CRA](https://create-react-app.dev/)
+2. In nested-modal create a link: `npm link`
+3. Go to your project and link nested-modal with your project: `npm link nested-modal`
+4. One last thing, you need to link your projects react copy in the nested-modal codebase: `npm linl ../path-to-my-cra-project/node_modules/react`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Before opening a pr please undo the last step as it will break the packge release workflow. `npm unlink ../path-to-my-cra-project/node_modules/react`
 
-## Learn More
+### [Code of Conduct](https://code.fb.com/codeofconduct)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+We will be using Facebook code of conduct.
+Please read [the full text](https://code.fb.com/codeofconduct) so that you can understand what actions will and will not be tolerated.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### License
+
+Nested Modal is [MIT licensed](./LICENSE).

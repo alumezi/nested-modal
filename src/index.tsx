@@ -1,6 +1,7 @@
 import React from 'react'
 import { createRef, ReactElement, useEffect, useState } from 'react'
-import styled from 'styled-components'
+import './index.css'
+
 import { NestedChild } from './NestedChild'
 import { TransitionGroup, Transition, TransitionStatus } from 'react-transition-group'
 
@@ -10,14 +11,6 @@ type Props = {
   setCurrentOpenedModal: (a: string) => void
   onClose: () => void
 }
-
-const NestedBase = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-`
 
 const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onClose }: Props): any => {
   const [show, setShow] = useState<Map<string, boolean>>(new Map())
@@ -118,7 +111,7 @@ const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onCl
   })
 
   return (
-    <NestedBase onClick={handleBaseClick} id='nested_base'>
+    <div id='nested_base' className='nested-base' onClick={handleBaseClick}>
       <TransitionGroup>
         {children.map((item, index) => {
           const nodeRef: any = createRef<HTMLDivElement>()
@@ -151,7 +144,7 @@ const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onCl
           )
         })}
       </TransitionGroup>
-    </NestedBase>
+    </div>
   )
 }
 

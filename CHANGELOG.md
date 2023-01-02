@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+Remove styled-components.
+Add rollup for development.
+Add Readme.
+
 ## 0.1.9 - 2023-01-01
 
 ## 0.1.8 - 2022-12-28
