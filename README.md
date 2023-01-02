@@ -13,6 +13,9 @@ Nested Modal is a component that helps manage lots of modals shown at the same t
 
 We are still working on some proper docs.
 
+<img width="1680" alt="Screenshot 2023-01-02 at 3 50 06 PM" src="https://user-images.githubusercontent.com/29073778/210247158-4397373c-5ac2-4f64-8737-95230095478c.png">
+
+
 ## Examples
 
 Main example:
