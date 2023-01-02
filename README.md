@@ -5,8 +5,6 @@ Nested Modal is a component that helps manage lots of modals shown at the same t
 - **Easy to use:** Very easy to create all the modals you need by just wrapping the content nodes with the Nested Modal wrapper.
 - **Full Control:** Abstracts only the main parts, you can fully control visiblity with ids and callbacks.
 
-[Learn how to use React in your project](https://reactjs.org/docs/getting-started.html).
-
 ## Installation
 
 `npm install nested-modal`
