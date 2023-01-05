@@ -30,7 +30,7 @@ export const NestedChild = ({
 
   return (
     <div
-      className='styled-modal'
+      className='nm_styled-modal'
       onClick={(event: any) => {
         handleModalClose(event, index)
       }}
@@ -38,19 +38,19 @@ export const NestedChild = ({
       ref={nodeRef}
       style={{ left: `${indexBasedLeft}%`, ...style }}
     >
-      <div className='modal-header'>
+      <div className='nm_modal-header'>
         <button
-          className='back-button'
+          className='nm_back-button'
           onClick={() => {
             handleClose(index)
           }}
-          id='back_button'
+          id='nm_back_button'
         >
           <BackIcon />
         </button>
         {title}
       </div>
-      <div className='modal-body'>{children}</div>
+      <div className='nm_modal-body'>{children}</div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-.modal-header {
+.nm_modal-header {
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -11,13 +11,13 @@
   box-sizing: border-box;
 }
 
-.modal-body {
+.nm_modal-body {
   padding: 5rem;
   overflow-y: auto;
   height: 90%;
 }
 
-.nested-base {
+.nm_nested-base {
   position: absolute;
   top: 0;
   right: 0;
@@ -25,7 +25,7 @@
   left: 0;
 }
 
-.styled-modal {
+.nm_styled-modal {
   position: fixed;
   height: 100%;
   z-index: 1300;
@@ -33,15 +33,19 @@
   bottom: 0;
   top: 0;
   background: rgb(255, 255, 255);
-  box-shadow: -50em 0 0 rgb(0 0 0 / 20%);
   margin-left: 5%;
+  border-left: 1px solid rgb(207, 217, 224);
 }
 
-.styled-modal:hover:not(:only-child):not(:last-child) {
+.nm_styled-modal:last-child {
+  box-shadow: 1px 1px 1px 100em rgb(0 0 0 / 20%);
+}
+
+.nm_styled-modal:hover:not(:last-child) {
   margin-left: 3%;
 }
 
-.back-button {
+.nm_back-button {
   background: none;
   color: inherit;
   border: none;

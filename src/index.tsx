@@ -54,18 +54,22 @@ const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onCl
 
       setCurrentOpenedModal(children[index - 1]?.props.id)
       children[index]?.props?.onClose && children[index]?.props?.onClose()
+    } else {
+      setCurrentOpenedModal('')
+      onClose()
+      children.props?.onClose && children.props.onClose()
     }
   }
 
   const handleBaseClick = (event: any) => {
-    if (event.target.id === 'nested_base') {
+    if (event.target.id === 'nm_nested_base') {
       handleClose(0)
     }
   }
 
   const handleModalClose = (event: any, index: number) => {
     if (Array.isArray(children)) {
-      if (event.target?.id === 'back_button' || event.target?.parentElement.id === 'back_button') {
+      if (event.target?.id === 'nm_back_button' || event.target?.parentElement.id === 'nm_back_button') {
         handleClose(index)
 
         return
@@ -81,37 +85,38 @@ const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onCl
 
   if (!Array.isArray(children)) {
     return (
-      <NestedChild
-        show={show.get(children?.props.id) || false}
-        indexBasedLeft={indexBasedLeft(0)}
-        index={0}
-        handleClose={handleClose}
-        handleModalClose={handleModalClose}
-        nodeRef={null}
-        style={null}
-        title={children.props.title}
-      >
-        {children}
-      </NestedChild>
+      <div id='nm_nested_base' className='nm_nested-base' onClick={handleBaseClick}>
+        <NestedChild
+          show={show.get(children?.props.id) || false}
+          indexBasedLeft={indexBasedLeft(0)}
+          index={0}
+          handleClose={handleClose}
+          handleModalClose={handleModalClose}
+          nodeRef={null}
+          style={null}
+          title={children.props.title}
+        >
+          {children}
+        </NestedChild>
+      </div>
     )
   }
 
   const defaultStyle = (index: number) => ({
-    transition: 'opacity 100ms ease-in-out 0s, left 200ms ease-in-out 0s, margin-left 200ms ease-in-out 0s',
+    transition: 'margin-left 300ms ease',
     left: `${indexBasedLeft(index) + 4}%`,
-    opacity: 0,
   })
 
   const transitionStyles = (index: number): Record<TransitionStatus, any> => ({
-    entering: { left: `${indexBasedLeft(index) + 4}%`, opacity: 1 },
-    entered: { left: `${indexBasedLeft(index)}%`, opacity: 1 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 },
-    unmounted: { opacity: 0 },
+    entering: { left: `${indexBasedLeft(index) + 4}%` },
+    entered: { left: `${indexBasedLeft(index)}%` },
+    exiting: {},
+    exited: {},
+    unmounted: {},
   })
 
   return (
-    <div id='nested_base' className='nested-base' onClick={handleBaseClick}>
+    <div id='nm_nested_base' className='nm_nested-base' onClick={handleBaseClick}>
       <TransitionGroup>
         {children.map((item, index) => {
           const nodeRef: any = createRef<HTMLDivElement>()
