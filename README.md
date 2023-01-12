@@ -15,7 +15,6 @@ We are still working on some proper docs.
 
 <img width="1680" alt="Screenshot 2023-01-02 at 3 50 06 PM" src="https://user-images.githubusercontent.com/29073778/210247158-4397373c-5ac2-4f64-8737-95230095478c.png">
 
-
 ## Examples
 
 Main example:
@@ -55,7 +54,7 @@ In order to work on this package you need to follow these steps:
 1. Create a react project. e.g. with [CRA](https://create-react-app.dev/)
 2. In nested-modal create a link: `npm link`
 3. Go to your project and link nested-modal with your project: `npm link nested-modal`
-4. One last thing, you need to link your projects react copy in the nested-modal codebase: `npm linl ../path-to-my-cra-project/node_modules/react`
+4. One last thing, you need to link your projects react copy in the nested-modal codebase: `npm link ../path-to-my-cra-project/node_modules/react`
 
 - Before opening a pr please undo the last step as it will break the packge release workflow. `npm unlink ../path-to-my-cra-project/node_modules/react`
 
