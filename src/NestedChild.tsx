@@ -1,16 +1,17 @@
 import React, { ReactElement, MouseEvent } from 'react'
 import { BackIcon } from './BackIcon'
+import { ModalProps } from './Modal'
 
 interface NestedChildProps {
   index: number
-  children?: ReactElement
+  children?: ReactElement<ModalProps>
   show: boolean
   handleClose: (index: number, callBack?: () => void) => void
   handleModalClose: (event: MouseEvent<HTMLDivElement>, index: number) => void
   nodeRef: any
   style: any
   indexBasedLeft: number
-  title: string
+  title?: string
 }
 
 export const NestedChild = ({

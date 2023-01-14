@@ -4,15 +4,17 @@ import './index.css'
 
 import { NestedChild } from './NestedChild'
 import { TransitionGroup, Transition, TransitionStatus } from 'react-transition-group'
+import { ModalProps } from './Modal'
+
+export * from './Modal'
 
 type Props = {
-  children?: ReactElement | ReactElement[]
+  children: ReactElement<ModalProps> | ReactElement<ModalProps>[]
   currentOpenedModal: string
   setCurrentOpenedModal: (a: string) => void
-  onClose: () => void
 }
 
-const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onClose }: Props): any => {
+export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal }: Props): any => {
   const [show, setShow] = useState<Map<string, boolean>>(new Map())
   const indexBasedLeft = (index: number) => index * 5
 
@@ -44,20 +46,22 @@ const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModal, onCl
     return null
   }
 
-  const handleClose = (index: number) => {
+  const handleClose = async (index: number) => {
     if (Array.isArray(children)) {
       if (index === 0) {
-        setCurrentOpenedModal('')
-        onClose()
-        children[0].props?.onClose && children[0].props.onClose()
+        if (await children[0].props.onClose?.()) {
+          setCurrentOpenedModal('')
+        }
+        return
       }
 
-      setCurrentOpenedModal(children[index - 1]?.props.id)
-      children[index]?.props?.onClose && children[index]?.props?.onClose()
+      if (await children[index].props.onClose?.()) {
+        setCurrentOpenedModal(children[index - 1]?.props.id)
+      }
     } else {
-      setCurrentOpenedModal('')
-      onClose()
-      children.props?.onClose && children.props.onClose()
+      if (await children.props.onClose?.()) {
+        setCurrentOpenedModal('')
+      }
     }
   }
 
