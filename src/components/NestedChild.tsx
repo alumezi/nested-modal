@@ -1,6 +1,6 @@
 import React, { ReactElement, MouseEvent } from 'react'
 import { BackIcon } from './BackIcon'
-import { ModalProps } from './Modal'
+import { ModalProps } from './ModalChild'
 
 interface NestedChildProps {
   index: number

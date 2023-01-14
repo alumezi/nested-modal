@@ -1,12 +1,8 @@
 import React from 'react'
 import { createRef, ReactElement, useEffect, useState } from 'react'
-import './index.css'
-
-import { NestedChild } from './NestedChild'
+import { NestedChild } from '../components/NestedChild'
 import { TransitionGroup, Transition, TransitionStatus } from 'react-transition-group'
-import { ModalProps } from './Modal'
-
-export * from './Modal'
+import { ModalProps } from './ModalChild'
 
 type Props = {
   children: ReactElement<ModalProps> | ReactElement<ModalProps>[]
@@ -156,5 +152,3 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
     </div>
   )
 }
-
-export default NestedModal
