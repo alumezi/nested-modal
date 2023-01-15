@@ -42,22 +42,41 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
     return null
   }
 
+  /**
+   * Call all the onClose callbacks on children that will be closed
+   * @param children
+   * @returns void
+   */
+  const handleCallbackCalls = async (index: number) => {
+    let shouldClose = true
+    if (Array.isArray(children)) {
+      for (let i = children.length - 1; i >= index; i--) {
+        if (children[i] && show.get(children[i].props.id) && children[i].props.onClose) {
+          if (!(await children[i]?.props?.onClose?.())) {
+            shouldClose = false
+          }
+        }
+      }
+    }
+    return shouldClose
+  }
+
   const handleClose = async (index: number) => {
+    const shouldClose = await handleCallbackCalls(index)
+
+    if (!shouldClose) {
+      return
+    }
+
     if (Array.isArray(children)) {
       if (index === 0) {
-        if (await children[0].props.onClose?.()) {
-          setCurrentOpenedModal('')
-        }
+        setCurrentOpenedModal('')
         return
       }
 
-      if (await children[index].props.onClose?.()) {
-        setCurrentOpenedModal(children[index - 1]?.props.id)
-      }
+      setCurrentOpenedModal(children[index - 1]?.props.id)
     } else {
-      if (await children.props.onClose?.()) {
-        setCurrentOpenedModal('')
-      }
+      setCurrentOpenedModal('')
     }
   }
 
@@ -90,7 +109,6 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
           show={show.get(children?.props.id) || false}
           indexBasedLeft={indexBasedLeft(0)}
           index={0}
-          handleClose={handleClose}
           handleModalClose={handleModalClose}
           nodeRef={null}
           style={null}
@@ -135,7 +153,6 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
                   indexBasedLeft={indexBasedLeft(index)}
                   title={item.props.title}
                   show={show.get(item.props.id) || false}
-                  handleClose={handleClose}
                   handleModalClose={handleModalClose}
                   style={{
                     ...defaultStyle(index),
