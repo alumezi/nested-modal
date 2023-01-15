@@ -24,20 +24,26 @@ Main example:
 - Ids have to be unique.
 
 ```jsx
-import NestedModal from 'nested-modal'
+import { NestedModal, ModalChild } from 'nested-modal'
 
 const App = () => {
   return (
-    <NestedModal
-      currentOpenedModal={currentOpenedModal}
-      setCurrentOpenedModal={setCurrentOpenedModal}
-      onClose={() => {}}
-    >
-      <div id='first-modal'>
+    <NestedModal currentOpenedModal={currentOpenedModal} setCurrentOpenedModal={setCurrentOpenedModal}>
+      <ModalChild id='first-modal'>
         Modal content
         <button onClick={() => setCurrentOpenedModal('second-modal')}>asd</button>
-      </div>
-      <div id='second-modal'>Modal content 2</div>
+      </ModalChild>
+      <ModalChild
+        id='second-modal'
+        onClose={async () => {
+          if (window.confirm('Are you sure you want to close the 8th modal?')) {
+            return true
+          }
+          return false
+        }}
+      >
+        Modal content 2
+      </ModalChild>
     </NestedModal>
   )
 }

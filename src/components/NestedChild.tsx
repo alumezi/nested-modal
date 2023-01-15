@@ -1,23 +1,22 @@
 import React, { ReactElement, MouseEvent } from 'react'
 import { BackIcon } from './BackIcon'
+import { ModalProps } from './ModalChild'
 
 interface NestedChildProps {
   index: number
-  children?: ReactElement
+  children?: ReactElement<ModalProps>
   show: boolean
-  handleClose: (index: number, callBack?: () => void) => void
   handleModalClose: (event: MouseEvent<HTMLDivElement>, index: number) => void
   nodeRef: any
   style: any
   indexBasedLeft: number
-  title: string
+  title?: string
 }
 
 export const NestedChild = ({
   children,
   index,
   show,
-  handleClose,
   handleModalClose,
   nodeRef,
   style,
@@ -34,18 +33,12 @@ export const NestedChild = ({
       onClick={(event: any) => {
         handleModalClose(event, index)
       }}
-      id='nested_modal'
+      id={`nested_modal_${index}`}
       ref={nodeRef}
       style={{ left: `${indexBasedLeft}%`, ...style }}
     >
       <div className='nm_modal-header'>
-        <button
-          className='nm_back-button'
-          onClick={() => {
-            handleClose(index)
-          }}
-          id='nm_back_button'
-        >
+        <button className='nm_back-button' id='nm_back_button'>
           <BackIcon />
         </button>
         {title}
