@@ -15,7 +15,6 @@ We are still working on some proper docs.
 
 <img width="1680" alt="Screenshot 2023-01-02 at 3 50 06 PM" src="https://user-images.githubusercontent.com/29073778/210247158-4397373c-5ac2-4f64-8737-95230095478c.png">
 
-
 ## Examples
 
 Main example:
@@ -25,20 +24,26 @@ Main example:
 - Ids have to be unique.
 
 ```jsx
-import NestedModal from 'nested-modal'
+import { NestedModal, ModalChild } from 'nested-modal'
 
 const App = () => {
   return (
-    <NestedModal
-      currentOpenedModal={currentOpenedModal}
-      setCurrentOpenedModal={setCurrentOpenedModal}
-      onClose={() => {}}
-    >
-      <div id='first-modal'>
+    <NestedModal currentOpenedModal={currentOpenedModal} setCurrentOpenedModal={setCurrentOpenedModal}>
+      <ModalChild id='first-modal'>
         Modal content
         <button onClick={() => setCurrentOpenedModal('second-modal')}>asd</button>
-      </div>
-      <div id='second-modal'>Modal content 2</div>
+      </ModalChild>
+      <ModalChild
+        id='second-modal'
+        onClose={async () => {
+          if (window.confirm('Are you sure you want to close the 8th modal?')) {
+            return true
+          }
+          return false
+        }}
+      >
+        Modal content 2
+      </ModalChild>
     </NestedModal>
   )
 }
