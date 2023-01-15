@@ -11,6 +11,12 @@ Major release.
 Handle callback calls.
 ModalChild component.
 
+## 0.2.4 - 2023-01-12
+Typo fix readme.
+
+## 0.2.3 - 2023-01-05
+
+
 ## 0.2.2 - 2023-01-05
 
 ## 0.2.1 - 2023-01-02
