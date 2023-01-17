@@ -1,7 +1,6 @@
 import React from 'react'
 import { createRef, ReactElement, useEffect, useState } from 'react'
 import { NestedChild } from '../components/NestedChild'
-import { TransitionGroup, Transition, TransitionStatus } from 'react-transition-group'
 import { ModalProps } from './ModalChild'
 
 type Props = {
@@ -156,28 +155,12 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
     left: `${indexBasedLeft(index) + 4}%`,
   })
 
-  const transitionStyles = (index: number): Record<TransitionStatus, any> => ({
-    entering: { left: `${indexBasedLeft(index) + 4}%` },
-    entered: { left: `${indexBasedLeft(index)}%` },
-    exiting: {},
-    exited: {},
-    unmounted: {},
-  })
 
   return (
     <div id='nm_nested_base' className='nm_nested-base' onClick={handleBaseClick}>
-      <TransitionGroup>
         {children.map((item, index) => {
           const nodeRef: any = createRef<HTMLDivElement>()
           return (
-            <Transition
-              nodeRef={nodeRef}
-              in={show.get(item.props.id) || false}
-              appear={show.get(item.props.id) || false}
-              key={item.props.id}
-              timeout={500}
-            >
-              {(state) => (
                 <NestedChild
                   nodeRef={nodeRef}
                   index={index}
@@ -187,16 +170,13 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
                   handleModalClose={handleModalClose}
                   style={{
                     ...defaultStyle(index),
-                    ...transitionStyles(index)[state],
                   }}
                 >
                   {item}
                 </NestedChild>
               )}
-            </Transition>
           )
         })}
-      </TransitionGroup>
     </div>
   )
 }
