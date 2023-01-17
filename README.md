@@ -1,6 +1,6 @@
 # [nested-modal (React)](https://reactjs.org/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/alumezi/nested-modal/blob/main/LICENSE.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/alumezi/nested-modal/pulls)
 
-[Code Sandbox Interactive Example](https://codesandbox.io/s/interactive-nested-modal-ebvxpg?file=/src/App.tsx) 
+[⚡️ Code Sandbox Interactive Example ⚡️](https://codesandbox.io/s/interactive-nested-modal-ebvxpg?file=/src/App.tsx) 
 
 Nested Modal is a component that helps manage lots of modals shown at the same time.
 
