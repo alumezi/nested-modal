@@ -1,5 +1,5 @@
 import React from 'react'
-import { createRef, ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import { NestedChild } from '../components/NestedChild'
 import { ModalProps } from './ModalChild'
 
@@ -140,7 +140,6 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
           indexBasedLeft={indexBasedLeft(0)}
           index={0}
           handleModalClose={handleModalClose}
-          nodeRef={null}
           style={null}
           title={children.props.title}
         >
@@ -155,28 +154,23 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
     left: `${indexBasedLeft(index) + 4}%`,
   })
 
-
   return (
     <div id='nm_nested_base' className='nm_nested-base' onClick={handleBaseClick}>
-        {children.map((item, index) => {
-          const nodeRef: any = createRef<HTMLDivElement>()
-          return (
-                <NestedChild
-                  nodeRef={nodeRef}
-                  index={index}
-                  indexBasedLeft={indexBasedLeft(index)}
-                  title={item.props.title}
-                  show={show.get(item.props.id) || false}
-                  handleModalClose={handleModalClose}
-                  style={{
-                    ...defaultStyle(index),
-                  }}
-                >
-                  {item}
-                </NestedChild>
-              )}
-          )
-        })}
+      {children.map((item, index) => (
+        <NestedChild
+          index={index}
+          key={item.props.id}
+          indexBasedLeft={indexBasedLeft(index)}
+          title={item.props.title}
+          show={show.get(item.props.id) || false}
+          handleModalClose={handleModalClose}
+          style={{
+            ...defaultStyle(index),
+          }}
+        >
+          {item}
+        </NestedChild>
+      ))}
     </div>
   )
 }

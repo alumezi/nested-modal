@@ -7,7 +7,6 @@ interface NestedChildProps {
   children?: ReactElement<ModalProps>
   show: boolean
   handleModalClose: (event: MouseEvent<HTMLDivElement>, index: number) => void
-  nodeRef: any
   style: any
   indexBasedLeft: number
   title?: string
@@ -18,7 +17,6 @@ export const NestedChild = ({
   index,
   show,
   handleModalClose,
-  nodeRef,
   style,
   indexBasedLeft,
   title,
@@ -34,7 +32,6 @@ export const NestedChild = ({
         handleModalClose(event, index)
       }}
       id={`nested_modal_${index}`}
-      ref={nodeRef}
       style={{ left: `${indexBasedLeft}%`, ...style }}
     >
       <div className='nm_modal-header'>

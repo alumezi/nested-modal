@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-Major release.
+## 1.0.0 - 2023-01-12
+
 Handle callback calls.
 ModalChild component.
 Remove React Transtion group.
