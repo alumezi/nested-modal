@@ -20,6 +20,10 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
       let addedShow = true
       if (Array.isArray(children)) {
         children?.forEach((item) => {
+          if (!currentOpenedModal) {
+            a.set(item.props.id, false)
+            return
+          }
           a.set(item.props.id, addedShow)
           if (item.props.id === currentOpenedModal) {
             addedShow = false
@@ -28,11 +32,38 @@ export const NestedModal = ({ children, currentOpenedModal, setCurrentOpenedModa
       } else {
         a.set(children?.props.id, true)
       }
+
       return a
     }
 
     setShow(newMap())
   }, [children, currentOpenedModal])
+
+  useEffect(() => {
+    let temp = ''
+
+    if (!show.entries().next().value) {
+      temp = ''
+    } else {
+      show.forEach((value, id) => {
+        if (value) {
+          temp = id
+        }
+      })
+    }
+
+    const searchParams = new URLSearchParams(window.location.search)
+
+    searchParams.delete('lastNestedModalOpened')
+
+    if (temp) {
+      searchParams.append('lastNestedModalOpened', temp)
+    }
+
+    const newSearch = searchParams.toString()
+
+    window.history.replaceState({}, '', `${location.pathname}?${newSearch}`)
+  }, [show])
 
   if (!currentOpenedModal) {
     return null
